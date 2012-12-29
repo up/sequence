@@ -6,13 +6,13 @@ Asynchronous processing of functions
 
 ###sequence.pronto
 
-####Syntax
+#####Syntax
 
 ```javascript
 sequence.pronto(tasks [, callback ]);
 ```
 
-####Example
+#####Example
 
 ```javascript
 sequence.pronto(
@@ -37,13 +37,13 @@ sequence.pronto(
 
 ###sequence.lazy
 
-####Syntax
+#####Syntax
 
 ```text
 sequence.lazy(tasks [, callback ]);
 ```
 
-####Example
+#####Example
 
 ```javascript
 sequence.lazy(
@@ -71,17 +71,18 @@ sequence.lazy(
 
 ###sequence.init
 
-####Syntax
+#####Syntax
 
 ```text
 var [mySeq] = sequence.init(["Id"]);
 ```
 
-####Example
+#####Example
 
 ```javascript
 var mySeq = sequence.init();
 ```
+or
 
 ```javascript
 var mySeq = sequence.init('mySeq');
@@ -89,20 +90,32 @@ var mySeq = sequence.init('mySeq');
 
 ####[mySeq].add
 
+#####Syntax
+```text
+mySeq.add(FUNCTION);
+```
+
+#####Example
 ```javascript
 mySeq.add(function(callback){ 
   // code for task 1
   callback();
 });
+
 mySeq.add(function(callback){ 
   // code for task 2
   callback();
 });
-
 ```
 
 ####[mySeq].run
 
+#####Syntax
+```text
+mySeq.run([FUNCTION]);
+```
+
+#####Example
 ```javascript
 mySeq.run(function(callback){ 
   console.log('done');
