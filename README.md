@@ -8,7 +8,9 @@ Asynchronous processing of functions
 
 ####Syntax
 
-  sequence.pronto(tasks [, callback ]);
+```javascript
+sequence.pronto(tasks [, callback ]);
+```
 
 ####Example
 
