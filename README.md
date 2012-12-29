@@ -39,7 +39,7 @@ sequence.pronto(
 
 ####Syntax
 
-```javascript
+```txt
 sequence.lazy(tasks [, callback ]);
 ```
 
@@ -74,7 +74,7 @@ sequence.lazy(
 ####Syntax
 
 ```text
-sequence.init(["Id"]);
+var [mySeq] = sequence.init(["Id"]);
 ```
 
 ####Example
