@@ -74,7 +74,7 @@ sequence.lazy(
 ####Syntax
 
 ```text
-var mySeq = sequence.init(["Id"]);
+sequence.init(["Id"]);
 ```
 
 ####Example
