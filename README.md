@@ -11,6 +11,8 @@ Asynchronous processing of functions
 ```javascript
 sequence.pronto(tasks [, callback ]);
 ```
+@param tasks {Array} Series of functions
+@param callback {Function} Callback function (optional)
 
 #####Example
 
@@ -42,6 +44,8 @@ sequence.pronto(
 ```text
 sequence.lazy(tasks [, callback ]);
 ```
+@param tasks {Array} Series of functions
+@param callback {Function} Callback function (optional)
 
 #####Example
 
@@ -76,6 +80,7 @@ sequence.lazy(
 ```text
 var [mySeq] = sequence.init(["Id"]);
 ```
+@param Id {String} Id (optional)
 
 #####Example
 
@@ -92,8 +97,9 @@ var mySequenceOfTasksWithIndividualId = sequence.init('mySeq');
 
 #####Syntax
 ```text
-mySeq.add(FUNCTION);
+mySeq.add(fn);
 ```
+@param fn {Function} Single task
 
 #####Example
 ```javascript
@@ -112,8 +118,9 @@ mySeq.add(function(callback){
 
 #####Syntax
 ```text
-mySeq.run([FUNCTION]);
+mySeq.run([fn]);
 ```
+@param fn {Function} Callback function (optional) 
 
 #####Example
 ```javascript
