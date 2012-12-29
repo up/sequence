@@ -73,7 +73,7 @@ sequence.lazy(
 
 ####Syntax
 
-```javascript
+```text
 var mySeq = sequence.init(["Id"]);
 ```
 
