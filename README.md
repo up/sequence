@@ -80,12 +80,12 @@ var [mySeq] = sequence.init(["Id"]);
 #####Example
 
 ```javascript
-var mySeq = sequence.init();
+var mySequenceOfTasksWithRandomId = sequence.init();
 ```
 or
 
 ```javascript
-var mySeq = sequence.init('mySeq');
+var mySequenceOfTasksWithIndividualId = sequence.init('mySeq');
 ```
 
 ####[mySeq].add
