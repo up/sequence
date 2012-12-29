@@ -7,75 +7,67 @@
 <h1>sequenceJS Test</h1>
 <script>
 var time = 0;
+
 function timer(action) {
-    var start = new Date();
-    if (time < 1 || action === 'start') {
-        time = start;
-    } else if (action === 'stop') {    
-        console.log(start - time);
-    }
+  var start = new Date();
+  if (time < 1 || action === 'start') {
+    time = start;
+  } else if (action === 'stop') {
+    console.log(start - time);
+  }
 }
 
 timer('start');
 
-sequence.pronto(
-  [
-    function(callback){
-      setTimeout(function(){
-        callback(null, 'pronto done');
-      }, 3000);
-    }
-  ], 
-    function (err, result) {
-      console.log('first: ' + result); 
-    }
-);
+sequence.pronto([
+  function (callback) {
+  setTimeout(function () {
+    callback(null, 'pronto done');
+  }, 3000);}
+  ], function (err, result) {
+  console.log('first: ' + result);
+});
 
-sequence.lazy(
-  [
-    function(callback){
-      setTimeout(function(){
-        callback(null, 'one', 'two');
-      }, 1000);
-    },
-    function(arg1, arg2, callback){
-      setTimeout(function(){
-        callback(null, 'three');
-      }, 500);
-    },
-    function(arg1, callback){
-      // arg1 now equals 'three'
-      callback(null, 'lazy done');
-    }
-  ], 
-  function (err, result) {
-    console.log('second: ' + result);
-    timer('stop');
-  }
-);
+sequence.lazy([
+  function (callback) {
+  setTimeout(function () {
+    callback(null, 'one', 'two');
+  }, 1000);},
+  function (arg1, arg2, callback) {
+  setTimeout(function () {
+    callback(null, 'three');
+  }, 500);},
+  function (arg1, callback) {
+  // arg1 now equals 'three'
+  callback(null, 'lazy done');}
+  ], function (err, result) {
+  console.log('second: ' + result);
+  timer('stop');
+});
 
 var mySeq = sequence.init();
 
-mySeq.add(function(callback){ 
+mySeq.add(function (callback) {
   console.log('mySeq task 1');
   callback();
 });
 
-mySeq.add(function(callback){ 
-  setTimeout(function(){
+mySeq.add(function (callback) {
+  setTimeout(function () {
     console.log('mySeq task 2');
     callback();
   }, 2000);
 });
 
-mySeq.add(function(callback){ 
+mySeq.add(function (callback) {
   console.log('mySeq task 3');
   callback();
 });
 
-mySeq.run(function(callback){ 
+mySeq.run(function (callback) {
   console.log('seq done');
 });
+
 
 </script>
 <img src="http://www.infinity-spa.de/img/bg-start.jpg" />
