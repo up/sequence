@@ -14,23 +14,25 @@ sequence.pronto(tasks [, callback ]);
 
 ####Example
 
-  sequence.pronto(
-    [
-      function(callback){
-        setTimeout(function(){
-          // code for task 1
-          callback(null, 'first');
-        }, 3000);
-      },
-      function(callback){
-        // code for task 2
-        callback(null, 'done');
-      }
-    ], 
-      function (err, result) {
-        console.log('first: ' + result); 
-      }
-  );
+```javascript
+sequence.pronto(
+  [
+    function(callback){
+      setTimeout(function(){
+        // code for task 1
+        callback(null, 'first');
+      }, 3000);
+    },
+    function(callback){
+      // code for task 2
+      callback(null, 'done');
+    }
+  ], 
+    function (err, result) {
+      console.log('first: ' + result); 
+    }
+);
+```
   
 
 ###sequence.lazy
