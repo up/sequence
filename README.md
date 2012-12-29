@@ -39,7 +39,7 @@ sequence.pronto(
 
 ####Syntax
 
-```txt
+```text
 sequence.lazy(tasks [, callback ]);
 ```
 
