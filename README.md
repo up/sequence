@@ -11,7 +11,7 @@ Asynchronous processing of functions
 ```javascript
 sequence.run(tasks [, callback ]);
 ```
-@param tasks {Array} Series of functions		
+@param tasks {Array} Series of functions    
 @param callback {Function} Callback function (optional)
 
 #####Example
@@ -20,14 +20,14 @@ sequence.run(tasks [, callback ]);
 sequence.run(
   [
     function(next){
-		  setTimeout(function() {
-		    console.log("Test A Complete");
-		    sequence.cache.test = "from Test A";
-		    next();
-		  }, 1000);
+      setTimeout(function() {
+        console.log("Test A Complete");
+        sequence.cache.test = "from Test A";
+        next();
+      }, 1000);
     },
     function(next){
-	    console.log("Funktion A Complete");
+      console.log("Funktion A Complete");
       next();
     }
   ], 
