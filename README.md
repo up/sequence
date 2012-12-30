@@ -2,7 +2,7 @@
 
 Simple asynchronous processing of functions
 
-![Support for browser and node.js](/support.png)
+![Support for browser and node.js](https://raw.github.com/up/sequence/master/support.png)
 
 ##Methods
 
