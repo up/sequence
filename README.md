@@ -2,8 +2,7 @@
 
 Simple asynchronous processing of functions
 
-![Support](support.png)
-Format: ![Alt Text](url)
+![Support for browser and node.js](./support.png)
 
 ##Methods
 
