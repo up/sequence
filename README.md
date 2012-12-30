@@ -23,15 +23,15 @@ sequence.run(
   [
     function(next){
       setTimeout(function() {
-        console.log("Funktion A Complete");
-        sequence.cache.testA = "from Funktion A";
+        console.log("Task A Complete");
+        sequence.cache.taskA = "from Task A";
         next();
       }, 1000);
     },
     function(next){
       setTimeout(function() {
-        console.log("Funktion B Complete");
-        console.log(sequence.cache.testA);
+        console.log("Task B: " + sequence.cache.taskA);
+        console.log("Task B Complete");
         next();
       }, 1000);
     }
@@ -45,18 +45,18 @@ sequence.run(
 #####Example 2
 
 ```javascript
-var testA = function(next) {
+var taskA = function(next) {
   setTimeout(function() {
-    console.log("Test A Complete");
-    sequence.cache.test = "from Test A";
+    console.log("Task A Complete");
+    sequence.cache.test = "from Task A";
     next();
   }, 1000);
 };
 
-var testB = function(next) {
+var taskB = function(next) {
   setTimeout(function() {
-    console.log("Test B Complete");
-    console.log(sequence.cache.test);
+    console.log("Task B: " + sequence.cache.test);
+    console.log("Task B Complete");
     next();
   }, 1000);
 };
@@ -65,7 +65,7 @@ var callback = function() {
   console.log("Sequence complete in " + timer('stop') + " msec");
 };
 
-sequence.run( [ testA, testA, testA, testA, testB ], callback );
+sequence.run( [ taskA, taskA, taskA, taskA, taskB ], callback );
 ```
 
 ##File sizes
