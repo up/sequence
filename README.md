@@ -2,7 +2,8 @@
 
 Simple asynchronous processing of functions
 
-[![Support](https://secure.travis-ci.org/yahoo/ycb.png?branch=master)]
+![Support](support.png)
+Format: ![Alt Text](url)
 
 ##Methods
 
