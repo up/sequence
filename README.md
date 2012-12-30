@@ -12,6 +12,7 @@ Asynchronous processing of functions
 sequence.run(tasks [, callback ]);
 ```
 @param tasks {Array} Series of functions
+
 @param callback {Function} Callback function (optional)
 
 #####Example
