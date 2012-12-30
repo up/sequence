@@ -11,8 +11,8 @@ Asynchronous processing of functions
 ```javascript
 sequence.run(tasks [, callback ]);
 ```
-* @param tasks {Array} Series of functions
-* @param callback {Function} Callback function (optional)
+@param tasks {Array} Series of functions		
+@param callback {Function} Callback function (optional)
 
 #####Example
 
