@@ -1,6 +1,7 @@
 /*global module: true, define: true */
 
 /**
+ * Asynchronous processing of functions
  * https://github.com/up/sequence
  * copyright (c) 2011 Uli Preuss
  * MIT License
