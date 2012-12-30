@@ -1,0 +1,3 @@
+[submodule "growlnotify"]
+	path = growlnotify
+	url = git@github.com:up/growlnotify.git

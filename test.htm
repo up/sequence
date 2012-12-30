@@ -2,69 +2,58 @@
 <head>
 <title>sequence.js Test Suite</title>
 <script src="sequence.js"></script>
+<script src="helper.js"></script>
+<script src="growlnotify/growlnotify.js"></script>
 </head>
 <body>
-<h1>sequenceJS Test</h1>
+<h1>sequence.js Test Suite</h1>
 <script>
-// helper
-var time = 0;
-function timer(action) {
-  var start = new Date();
-  if (time < 1 || action === 'start') {
-    time = start;
-  } else if (action === 'stop') {
-    return start - time;
-  }
-}
+/*global echo:true, sequence:true, timer:true, setTimer:true*/
 
-var setTimer = function(next) {
-  timer('start');
-  next();
-};
-
-var testA = function(next) {
+var taskA = function(next) {
   setTimeout(function() {
-    console.log("Test A Complete");
-    sequence.cache.test = "from Test A";
+    echo("Task A completed");
+    sequence.cache.test = "Hi from Task A!";
     next();
   }, 1000);
 };
 
-var testB = function(next) {
+var taskB = function(next) {
   setTimeout(function() {
-    console.log("Test B Complete");
-    console.log(sequence.cache.test);
+    echo("Task B: " + sequence.cache.test);
+    echo("Task B completed");
     next();
-  }, 1000);
+  }, 1500);
 };
 
 var callback = function() {
-  console.log("Sequence complete in " + timer('stop') + " msec");
+  echo("Sequence completed in " + timer('stop') + " msec", true);
 };
 
-//sequence.run( [ setTimer, testA, testA, testA, testA, testB ], callback );
+sequence.run( [ setTimer, taskA, taskB, taskA ], callback );
 
+/*
 sequence.run(
   [
+    setTimer,
     function(next){
       setTimeout(function() {
-        console.log("Funktion A Complete");
-        sequence.cache.testA = "from Funktion A";
+        echo("Task A completed.");
+        sequence.cache.taskA = "from Task A";
         next();
       }, 1000);
     },
     function(next){
       setTimeout(function() {
-        console.log("Funktion B Complete");
-        console.log(sequence.cache.testA);
+        echo("Task B completed.");
+        echo(sequence.cache.taskA);
         next();
       }, 1000);
     }
   ], 
-  function () {
-    console.log('Sequence complete'); 
-  }
+  callback
 );
+*/
 </script>
 </body>
 </html>
