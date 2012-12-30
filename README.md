@@ -2,7 +2,7 @@
 
 Simple asynchronous processing of functions
 
-[![Build Status](https://secure.travis-ci.org/yahoo/ycb.png?branch=master)](http://travis-ci.org/yahoo/ycb)
+[![Support](https://secure.travis-ci.org/yahoo/ycb.png?branch=master)]
 
 ##Methods
 
