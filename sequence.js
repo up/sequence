@@ -1,143 +1,51 @@
-/*global process: false, module: false, console: false */
-
+/*global module: true,  define: true */
 /**
- * main function from https://github.com/caolan/async
-*/
+  * https://github.com/jgallen23/resistance
+  * copyright JGA 2011
+  * MIT License
+  */
 
 var sequence = (function () {
   
-  "use strict";
+  var cache = {};
 
-  var 
-    nextTick, 
-    sequences = {},
-    empty = function () {}
-  ;
-  
-  // nextTick implementation with browser-compatible fallback
-  if (typeof process === 'undefined' || typeof process.nextTick === 'undefined') {
-    nextTick = function (fn) {
-      setTimeout(fn, 25);
-    };
-  }
-  else {
-    nextTick = process.nextTick;
-  }
+  function runTasks (tasks, callback) {
 
-  /**
-   * @private
-  */
-  function createRandomId() {
-    return Math.floor(Math.random() * 0x100000).toString(16);
-  }
-
-  /**
-   * @private
-  */
-  function iterator(tasks, id) {
-    var callback;
-    callback = function (index) {
-      function fn() {
-        if (tasks.length) {
-          tasks[index].apply(null, arguments);
-        }
-        return fn.next();
-      }
-      fn.next = function () {
-        if(index === tasks.length - 1){
-          delete sequences[id];
-        }
-        return (index < tasks.length - 1) ? callback(index + 1) : null;       
-      };
-      return fn;
-    };   
-    return callback(0);
-  }
-
-  /**
-   * @public
-  */
-  function pronto(tasks, callback) {
-    
     var 
-      iterate, 
-      id = createRandomId()
+      num = 0, 
+      fns = [],
+      next, task
     ;
-    
-    sequences[id] = [tasks, callback];
-    
-    callback = callback || empty;
-    
-    if (!tasks.length) {
+
+    if (tasks.length === 0) {
       return callback();
     }
     
-    iterate = function (iterator) {
-      return function (err) {
-                
-        if (err) {
-          callback(err);
-          callback = empty;
-        }
-        else {
-          var
-            args = Array.prototype.slice.call(arguments, 1),
-            next = iterator.next()
-          ;
-          
-          if (next) {
-            args.push(iterate(next));
-          }
-          else {
-            args.push(callback);            
-            
-          }
-          nextTick(function () {
-            iterator.apply(null, args);
-          });
-        }
-      };
+    next = function() {
+      tasks[num++](task);
     };
-    iterate(iterator(tasks, id))();
-  }
-
-  /**
-   * @public
-  */
-  function onDOMReady(tasks, callback) {
-    var forlint = /in/.test(document.readyState) 
-      ? setTimeout(function(){ 
-          onDOMReady(tasks, callback); 
-        }, 9) 
-      : pronto(tasks, callback)
-    ;   
-  }
-
-  /**
-   * @public
-  */
-  function initSequence(id) {
-    id = id || createRandomId();
-    sequences[id] = {
-      tasks: [],
-      add: function(task){
-        this.tasks.push(task);
-      },
-      run: function(cb){
-        pronto(this.tasks, cb || empty);
+    
+    task = function(fn) {
+      fns[num] = fn;
+      if (num === tasks.length && callback) {
+        callback.apply(fns, fns);
+      } else {
+        next();
       }
     };
-    return sequences[id];      
+    
+    next();
   }
 
   return {
-    pronto: pronto,
-    lazy: onDOMReady,
-    init: initSequence
+    run: runTasks,
+    cache: cache
   };
 
 }());
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = sequence;
-}
+  module.exports = sequence();
+} else if (typeof define === 'function' && typeof define.amd === 'object') {
+  define(sequence);
+} 

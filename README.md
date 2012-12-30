@@ -9,7 +9,7 @@ Asynchronous processing of functions
 #####Syntax
 
 ```javascript
-sequence.pronto(tasks [, callback ]);
+sequence.run(tasks [, callback ]);
 ```
 @param tasks {Array} Series of functions
 @param callback {Function} Callback function (optional)
@@ -17,7 +17,7 @@ sequence.pronto(tasks [, callback ]);
 #####Example
 
 ```javascript
-sequence.pronto(
+sequence.run(
   [
     function(callback){
       setTimeout(function(){
@@ -30,105 +30,12 @@ sequence.pronto(
       callback(null, 'done');
     }
   ], 
-    function (err, result) {
-      console.log('first: ' + result); 
-    }
-);
-```
-  
-
-###sequence.lazy
-
-#####Syntax
-
-```text
-sequence.lazy(tasks [, callback ]);
-```
-@param tasks {Array} Series of functions
-@param callback {Function} Callback function (optional)
-
-#####Example
-
-```javascript
-sequence.lazy(
-  [
-    function(callback){
-      setTimeout(function(){
-        callback(null, 'one', 'two');
-      }, 1000);
-    },
-    function(arg1, arg2, callback){
-      setTimeout(function(){
-        callback(null, 'two');
-      }, 500);
-    },
-    function(arg1, callback){
-      // arg1 now equals 'three'
-      callback(null, 'three');
-    }
-  ], 
   function (err, result) {
-    console.log('second: ' + result);
+    console.log('first: ' + result); 
   }
 );
 ```
 
-###sequence.init
-
-#####Syntax
-
-```text
-var [mySeq] = sequence.init(["Id"]);
-```
-@param Id {String} Id (optional)
-
-#####Example
-
-```javascript
-var mySequenceOfTasksWithRandomId = sequence.init();
-```
-or
-
-```javascript
-var mySequenceOfTasksWithIndividualId = sequence.init('mySeq');
-```
-
-####[mySeq].add
-
-#####Syntax
-```text
-mySeq.add(fn);
-```
-@param fn {Function} Single task
-
-#####Example
-```javascript
-mySeq.add(function(callback){ 
-  // code for task 1
-  callback();
-});
-
-mySeq.add(function(callback){ 
-  // code for task 2
-  callback();
-});
-```
-
-####[mySeq].run
-
-#####Syntax
-```text
-mySeq.run([fn]);
-```
-@param fn {Function} Callback function (optional) 
-
-#####Example
-```javascript
-mySeq.run(function(callback){ 
-  console.log('done');
-});
-```
-
 ##File sizes
-* Uncompressed: 2.02KB (836 bytes gzipped)
-* Compressed: 999 bytes (525 bytes gzipped)
+* Uncompressed: 706 bytes (391 bytes gzipped)
+* Compressed: 335 bytes (220 bytes gzipped)

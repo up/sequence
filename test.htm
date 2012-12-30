@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>sequence.js Test Suite</title>
-<script src="sequence.min.js"></script>
+<script src="sequence.js"></script>
 </head>
 <body>
 <h1>sequenceJS Test</h1>
@@ -13,72 +13,41 @@ function timer(action) {
   if (time < 1 || action === 'start') {
     time = start;
   } else if (action === 'stop') {
-    console.log(start - time);
+    return start - time;
   }
 }
 
-timer('start');
+var setTimer = function(status) {
+  timer('start');
+  status();
+};
 
-sequence.pronto(
-  [
-    function (callback) {
-      setTimeout(function () {
-        callback(null, 'pronto done');
-      }, 3000);
-    }
-  ], 
-  function (err, result) {
-    console.log('first: ' + result);
-  }
-);
+var testA = function(status) {
+  setTimeout(function() {
+    console.log("Test A Complete");
+    sequence.cache.test = "from Test A";
+    status();
+  }, 1000);
+};
 
-sequence.lazy(
-  [
-    function (callback) {
-      setTimeout(function () {
-        callback(null, 'one', 'two');
-      }, 1000);
-    },
-    function (arg1, arg2, callback) {
-      setTimeout(function () {
-        callback(null, 'three');
-      }, 500);
-    },
-    function (arg1, callback) {
-      // arg1 now equals 'three'
-      callback(null, 'lazy done');}
-  ], 
-  function (err, result) {
-    console.log('second: ' + result);
-    timer('stop');
-  }
-);
+var testB = function(status) {
+  setTimeout(function() {
+    console.log("Test B Complete");
+    console.log(sequence.cache.test);
+    status();
+  }, 1000);
+};
 
-var mySeq = sequence.init();
+var callback = function() {
+  console.log("Series Complete in " + timer('stop') + " msec");
+};
 
-mySeq.add(function (callback) {
-  console.log('mySeq task 1');
-  callback();
-});
-
-mySeq.add(function (callback) {
-  setTimeout(function () {
-    console.log('mySeq task 2');
-    callback();
-  }, 2000);
-});
-
-mySeq.add(function (callback) {
-  console.log('mySeq task 3');
-  callback();
-});
-
-mySeq.run(function (callback) {
-  console.log('seq done');
-});
+sequence.run( [ setTimer, testA, testA, testA, testA, testB ], callback );
 
 </script>
+<!-- 
 <img src="http://www.infinity-spa.de/img/bg-start.jpg" />
 <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+-->
 </body>
 </html>
