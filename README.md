@@ -2,7 +2,7 @@
 
 Simple asynchronous processing of functions
 
-![Support for browser and node.js](./support.png)
+![Support for browser and node.js](/support.png)
 
 ##Methods
 
