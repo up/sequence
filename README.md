@@ -69,3 +69,9 @@ sequence.run( [ testA, testA, testA, testA, testB ], callback );
 ##File sizes
 * Uncompressed: 706 bytes (391 bytes gzipped)
 * Compressed: 335 bytes (220 bytes gzipped)
+
+##Tests
+
+		test.browser.htm
+
+		$ node test.node.js

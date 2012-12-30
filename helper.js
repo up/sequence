@@ -1,3 +1,5 @@
+/*global exports: true, growl: true */
+
 var time = 0;
 
 function timer(action) {
@@ -9,6 +11,19 @@ function timer(action) {
   }
 }
 
+var setTimer = function(next) {
+  timer('start');
+  next();
+};
+
+// NodeJS
+// var sequence = require('./sequence.js').sequence;
+if (typeof exports !== 'undefined') { 
+  exports.setTimer = setTimer;
+  exports.timer = timer;
+}
+
+// Browser notification with GrowlJS
 var echo = function(msg, sticky){
   var config = {
 	  head: msg,
@@ -26,9 +41,3 @@ var echo = function(msg, sticky){
   }
 	growl.notify(config);
 };
-
-var setTimer = function(next) {
-  timer('start');
-  next();
-};
-

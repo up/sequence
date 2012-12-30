@@ -1,4 +1,4 @@
-/*global module: true, define: true */
+/*global module: true, define: true, exports: true */
 
 /**
  * Asynchronous processing of functions
@@ -11,7 +11,7 @@ var sequence = (function () {
   
   var cache = {};
 
-  function runTasks (tasks, callback) {
+  function run (tasks, callback) {
 
     var 
       num = 0, 
@@ -40,14 +40,14 @@ var sequence = (function () {
   }
 
   return {
-    run: runTasks,
+    run: run,
     cache: cache
   };
 
 }());
 
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = sequence();
-} else if (typeof define === 'function' && typeof define.amd === 'object') {
-  define(sequence);
+// NodeJS
+// var sequence = require('./sequence.js').sequence;
+if (typeof exports !== 'undefined') { 
+  exports.sequence = sequence;
 } 
