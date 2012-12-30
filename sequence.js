@@ -1,4 +1,4 @@
-/*global module: true,  define: true */
+/*global module: true, define: true */
 
 /**
  * https://github.com/up/sequence
