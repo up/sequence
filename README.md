@@ -19,19 +19,20 @@ sequence.run(tasks [, callback ]);
 ```javascript
 sequence.run(
   [
-    function(callback){
-      setTimeout(function(){
-        // code for task 1
-        callback(null, 'first');
-      }, 3000);
+    function(next){
+		  setTimeout(function() {
+		    console.log("Test A Complete");
+		    sequence.cache.test = "from Test A";
+		    next();
+		  }, 1000);
     },
-    function(callback){
-      // code for task 2
-      callback(null, 'done');
+    function(next){
+	    console.log("Funktion A Complete");
+      next();
     }
   ], 
-  function (err, result) {
-    console.log('first: ' + result); 
+  function () {
+    console.log('done); 
   }
 );
 ```
