@@ -1,7 +1,7 @@
 /*global sequence: true, require: true, console: true */
 
 var 
-  sequence = require('./sequence.js').sequence,
+  sequence = require('../sequence.js').sequence,
   helper = require('./helper.js'),
   setTimer = helper.setTimer,
   timer = helper.timer

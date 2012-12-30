@@ -28,7 +28,7 @@ var echo = function(msg, sticky){
   var config = {
 	  head: msg,
 	  position: 'top right',
-	  path: 'growlnotify/'
+	  path: '../growlnotify/'
   };
   if(sticky) {
 	  config.sticky = true;

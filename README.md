@@ -2,7 +2,7 @@
 
 Simple asynchronous processing of functions
 
-![Support for browser and node.js](https://raw.github.com/up/sequence/master/support.png)
+![Support for browser and node.js](https://raw.github.com/up/sequence/master/test/support.png)
 
 ##Methods
 
@@ -74,6 +74,6 @@ sequence.run( [ testA, testA, testA, testA, testB ], callback );
 
 ##Tests
 
-* `test.browser.htm`
-* `$ node test.node.js`
+* `test/test.browser.htm`
+* `$ node test/test.node.js`
 
