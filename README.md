@@ -21,18 +21,21 @@ sequence.run(
   [
     function(next){
       setTimeout(function() {
-        console.log("Test A Complete");
-        sequence.cache.test = "from Test A";
+        console.log("Funktion A Complete");
+        sequence.cache.testA = "from Funktion A";
         next();
       }, 1000);
     },
     function(next){
-      console.log("Funktion A Complete");
-      next();
+      setTimeout(function() {
+        console.log("Funktion B Complete");
+        console.log(sequence.cache.testA);
+        next();
+      }, 1000);
     }
   ], 
   function () {
-    console.log('done); 
+    console.log('Sequence complete'); 
   }
 );
 ```

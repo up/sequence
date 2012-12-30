@@ -39,15 +39,30 @@ var testB = function(status) {
 };
 
 var callback = function() {
-  console.log("Series Complete in " + timer('stop') + " msec");
+  console.log("Sequence complete in " + timer('stop') + " msec");
 };
 
-sequence.run( [ setTimer, testA, testA, testA, testA, testB ], callback );
-
+sequence.run(
+  [
+    function(next){
+      setTimeout(function() {
+        console.log("Funktion A Complete");
+        sequence.cache.testA = "from Funktion A";
+        next();
+      }, 1000);
+    },
+    function(next){
+      setTimeout(function() {
+        console.log("Funktion B Complete");
+        console.log(sequence.cache.testA);
+        next();
+      }, 1000);
+    }
+  ], 
+  function () {
+    console.log('Sequence complete'); 
+  }
+);
 </script>
-<!-- 
-<img src="http://www.infinity-spa.de/img/bg-start.jpg" />
-<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
--->
 </body>
 </html>
