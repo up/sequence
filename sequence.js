@@ -1,9 +1,10 @@
 /*global module: true,  define: true */
+
 /**
-  * https://github.com/jgallen23/resistance
-  * copyright JGA 2011
-  * MIT License
-  */
+ * https://github.com/up/sequence
+ * copyright (c) 2011 Uli Preuss
+ * MIT License
+*/
 
 var sequence = (function () {
   
