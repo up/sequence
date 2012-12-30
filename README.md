@@ -43,19 +43,19 @@ sequence.run(
 #####Example 2
 
 ```javascript
-var testA = function(status) {
+var testA = function(next) {
   setTimeout(function() {
     console.log("Test A Complete");
     sequence.cache.test = "from Test A";
-    status();
+    next();
   }, 1000);
 };
 
-var testB = function(status) {
+var testB = function(next) {
   setTimeout(function() {
     console.log("Test B Complete");
     console.log(sequence.cache.test);
-    status();
+    next();
   }, 1000);
 };
 
