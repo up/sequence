@@ -1,6 +1,8 @@
 #Sequence
 
-Asynchronous processing of functions
+Simple asynchronous processing of functions
+
+[![Build Status](https://secure.travis-ci.org/yahoo/ycb.png?branch=master)](http://travis-ci.org/yahoo/ycb)
 
 ##Methods
 
@@ -67,8 +69,8 @@ sequence.run( [ testA, testA, testA, testA, testB ], callback );
 ```
 
 ##File sizes
-* Uncompressed: 706 bytes (391 bytes gzipped)
-* Compressed: 335 bytes (220 bytes gzipped)
+* Uncompressed: 748 bytes (428 bytes gzipped)
+* Compressed: 264 bytes (197 bytes gzipped)
 
 ##Tests
 

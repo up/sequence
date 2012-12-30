@@ -1,15 +1,18 @@
 /*global module: true, define: true, exports: true */
 
 /**
- * Asynchronous processing of functions
+ * Simple asynchronous processing of functions
  * https://github.com/up/sequence
- * copyright (c) 2011 Uli Preuss
+ * copyright (c) 2012 Uli Preuss
  * MIT License
 */
 
 var sequence = (function () {
   
-  var cache = {};
+  var 
+    version = '0.2.2',
+    cache = {}
+  ;
 
   function run (tasks, callback) {
 
@@ -41,7 +44,8 @@ var sequence = (function () {
 
   return {
     run: run,
-    cache: cache
+    cache: cache,
+    version: version
   };
 
 }());
