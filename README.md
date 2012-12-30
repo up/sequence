@@ -48,14 +48,14 @@ sequence.run(
 var taskA = function(next) {
   setTimeout(function() {
     console.log("Task A completed");
-    sequence.cache.test = "from Task A";
+    sequence.cache.taskA = "from Task A";
     next();
   }, 1000);
 };
 
 var taskB = function(next) {
   setTimeout(function() {
-    console.log("Task B: " + sequence.cache.test);
+    console.log("Task B: " + sequence.cache.taskA);
     console.log("Task B completed");
     next();
   }, 1000);
