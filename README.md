@@ -72,7 +72,6 @@ sequence.run( [ testA, testA, testA, testA, testB ], callback );
 
 ##Tests
 
-		test.browser.htm
+* `test.browser.htm`
+* `$ node test.node.js`
 
-
-		$ node test.node.js
