@@ -23,7 +23,7 @@ sequence.run(
   [
     function(next){
       setTimeout(function() {
-        console.log("Task A Complete");
+        console.log("Task A completed");
         sequence.cache.taskA = "from Task A";
         next();
       }, 1000);
@@ -31,13 +31,13 @@ sequence.run(
     function(next){
       setTimeout(function() {
         console.log("Task B: " + sequence.cache.taskA);
-        console.log("Task B Complete");
+        console.log("Task B completed");
         next();
       }, 1000);
     }
   ], 
   function () {
-    console.log('Sequence complete'); 
+    console.log('Sequence completed'); 
   }
 );
 ```
@@ -47,7 +47,7 @@ sequence.run(
 ```javascript
 var taskA = function(next) {
   setTimeout(function() {
-    console.log("Task A Complete");
+    console.log("Task A completed");
     sequence.cache.test = "from Task A";
     next();
   }, 1000);
@@ -56,13 +56,13 @@ var taskA = function(next) {
 var taskB = function(next) {
   setTimeout(function() {
     console.log("Task B: " + sequence.cache.test);
-    console.log("Task B Complete");
+    console.log("Task B completed");
     next();
   }, 1000);
 };
 
 var callback = function() {
-  console.log("Sequence complete in " + timer('stop') + " msec");
+  console.log("Sequence completed in " + timer('stop') + " msec");
 };
 
 sequence.run( [ taskA, taskA, taskA, taskA, taskB ], callback );
