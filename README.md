@@ -14,7 +14,7 @@ sequence.run(tasks [, callback ]);
 @param tasks {Array} Series of functions    
 @param callback {Function} Callback function (optional)
 
-#####Example
+#####Example 1
 
 ```javascript
 sequence.run(
@@ -38,6 +38,32 @@ sequence.run(
     console.log('Sequence complete'); 
   }
 );
+```
+
+#####Example 2
+
+```javascript
+var testA = function(status) {
+  setTimeout(function() {
+    console.log("Test A Complete");
+    sequence.cache.test = "from Test A";
+    status();
+  }, 1000);
+};
+
+var testB = function(status) {
+  setTimeout(function() {
+    console.log("Test B Complete");
+    console.log(sequence.cache.test);
+    status();
+  }, 1000);
+};
+
+var callback = function() {
+  console.log("Sequence complete in " + timer('stop') + " msec");
+};
+
+sequence.run( [ testA, testA, testA, testA, testB ], callback );
 ```
 
 ##File sizes

@@ -42,6 +42,8 @@ var callback = function() {
   console.log("Sequence complete in " + timer('stop') + " msec");
 };
 
+//sequence.run( [ setTimer, testA, testA, testA, testA, testB ], callback );
+
 sequence.run(
   [
     function(next){
