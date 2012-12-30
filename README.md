@@ -4,7 +4,7 @@ Asynchronous processing of functions
 
 ##Methods
 
-###sequence.pronto
+###sequence.run
 
 #####Syntax
 
