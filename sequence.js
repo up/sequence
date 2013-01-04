@@ -18,7 +18,8 @@ var sequence = (function () {
 
     var 
       num = 0, 
-      fns = []
+      fns = [],
+      len = arguments.length
     ;
 
     function isArray(obj) {
@@ -42,11 +43,11 @@ var sequence = (function () {
       tasks[num++](task);
     }
         
-    if(arguments.length === 0) {
+    if(len === 0) {
       return; //no tasks, no callback
-    } else if (arguments.length === 1 && !isArray(tasks)) {
+    } else if (len === 1 && !isArray(tasks)) {
       tasks(); // no tasks, only callback
-    } else if (arguments.length === 2 && isArray(tasks) && tasks.length === 0) {
+    } else if (len === 2 && isArray(tasks) && tasks.length === 0) {
       callback(); // empty task array, only callback
     } else {
       next();  

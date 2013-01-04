@@ -69,8 +69,8 @@ sequence.run( [ taskA, taskA, taskA, taskA, taskB ], callback );
 ```
 
 ##File sizes
-* Uncompressed: 748 bytes (428 bytes gzipped)
-* Compressed: 264 bytes (197 bytes gzipped)
+* Uncompressed: 1.03KB (532 bytes gzipped)
+* Compressed: 396 bytes (243 bytes gzipped)
 
 ##Tests
 
