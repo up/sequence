@@ -10,7 +10,7 @@
 var sequence = (function () {
   
   var 
-    version = '0.2.2',
+    version = '0.2.1',
     cache = {}
   ;
 
@@ -18,28 +18,40 @@ var sequence = (function () {
 
     var 
       num = 0, 
-      fns = [],
-      next, task
+      fns = []
     ;
 
-    if (tasks.length === 0) {
-      return callback();
+    function isArray(obj) {
+      if (obj.constructor.toString().indexOf('Array') === -1) {
+        return false;
+      }
+      else {
+        return true; 
+      }
     }
     
-    next = function() {
-      tasks[num++](task);
-    };
-    
-    task = function(fn) {
-      fns[num] = fn;
-      if (num === tasks.length && callback) {
-        callback.apply(fns, fns);
-      } else {
-        next();
+    function next() {
+      function task(fn) {
+        fns[num] = fn;
+        if (num === tasks.length && callback) {
+          callback.apply(fns, fns);
+        } else {
+          next();
+        }
       }
-    };
+      tasks[num++](task);
+    }
+        
+    if(arguments.length === 0) {
+      return; //no tasks, no callback
+    } else if (arguments.length === 1 && !isArray(tasks)) {
+      tasks(); // no tasks, only callback
+    } else if (arguments.length === 2 && isArray(tasks) && tasks.length === 0) {
+      callback(); // empty task array, only callback
+    } else {
+      next();  
+    }
     
-    next();
   }
 
   return {

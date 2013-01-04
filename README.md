@@ -1,6 +1,6 @@
 #Sequence
 
-Simple asynchronous processing of functions
+Asynchronous processing of functions
 
 ![Support for browser and node.js](https://raw.github.com/up/sequence/master/test/support.png)
 
