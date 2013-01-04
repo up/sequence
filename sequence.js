@@ -9,17 +9,13 @@
 
 var sequence = (function () {
   
-  var 
-    version = '0.2.3',
-    cache = {}
-  ;
+  var cache = {};
 
   function run (tasks, callback) {
 
     var 
       num = 0, 
-      fns = [],
-      len = arguments.length
+      fns = []
     ;
 
     function isArray(obj) {
@@ -43,11 +39,11 @@ var sequence = (function () {
       tasks[num++](task);
     }
         
-    if(len === 0) {
+    if(arguments.length === 0) {
       return; //no tasks, no callback
-    } else if (len === 1 && !isArray(tasks)) {
+    } else if (arguments.length === 1 && !isArray(tasks)) {
       tasks(); // no tasks, only callback
-    } else if (len === 2 && isArray(tasks) && tasks.length === 0) {
+    } else if (arguments.length === 2 && isArray(tasks) && tasks.length === 0) {
       callback(); // empty task array, only callback
     } else {
       next();  
@@ -57,8 +53,7 @@ var sequence = (function () {
 
   return {
     run: run,
-    cache: cache,
-    version: version
+    cache: cache
   };
 
 }());
