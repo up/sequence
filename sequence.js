@@ -1,9 +1,9 @@
 /*global module: true, define: true, exports: true */
 
 /**
- * Simple asynchronous processing of functions
+ * Asynchronous processing of functions
  * https://github.com/up/sequence
- * copyright (c) 2012 Uli Preuss
+ * copyright (c) 2012 - 2013 Uli Preuss
  * MIT License
 */
 
