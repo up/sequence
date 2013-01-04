@@ -4,14 +4,12 @@ Asynchronous processing of functions
 
 ![Support for browser and node.js](https://raw.github.com/up/sequence/master/test/support.png)
 
-##Methods
-
-###sequence.run
+##Usage
 
 #####Syntax
 
 ```javascript
-sequence.run(tasks [, callback ]);
+sequence(tasks [, callback ]);
 ```
 @param tasks {Array} Series of functions    
 @param callback {Function} Callback function (optional)
@@ -19,18 +17,19 @@ sequence.run(tasks [, callback ]);
 #####Example 1
 
 ```javascript
-sequence.run(
+var cache = {};
+sequence(
   [
     function(next){
       setTimeout(function() {
         console.log("Task A completed");
-        sequence.cache.taskA = "from Task A";
+        cache.taskA = "from Task A";
         next();
       }, 1000);
     },
     function(next){
       setTimeout(function() {
-        console.log("Task B: " + sequence.cache.taskA);
+        console.log("Task B: " + cache.taskA);
         console.log("Task B completed");
         next();
       }, 1000);
@@ -45,17 +44,18 @@ sequence.run(
 #####Example 2
 
 ```javascript
+var cache = {};
 var taskA = function(next) {
   setTimeout(function() {
     console.log("Task A completed");
-    sequence.cache.taskA = "from Task A";
+    cache.taskA = "from Task A";
     next();
   }, 1000);
 };
 
 var taskB = function(next) {
   setTimeout(function() {
-    console.log("Task B: " + sequence.cache.taskA);
+    console.log("Task B: " + cache.taskA);
     console.log("Task B completed");
     next();
   }, 1000);
@@ -65,7 +65,7 @@ var callback = function() {
   console.log("Sequence completed in " + timer('stop') + " msec");
 };
 
-sequence.run( [ taskA, taskA, taskA, taskA, taskB ], callback );
+sequence( [ taskA, taskA, taskA, taskA, taskB ], callback );
 ```
 
 ##File sizes

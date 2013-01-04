@@ -9,18 +9,18 @@
 <h1>sequence.js Test Suite</h1>
 <script>
 /*global echo:true, sequence:true, timer:true, setTimer:true*/
-
+var cache = {};
 var taskA = function(next) {
   setTimeout(function() {
     echo("Task A completed");
-    sequence.cache.test = "Hi from Task A!";
+    cache.test = "Hi from Task A!";
     next();
   }, 1000);
 };
 
 var taskB = function(next) {
   setTimeout(function() {
-    echo("Task B: " + sequence.cache.test);
+    echo("Task B: " + cache.test);
     echo("Task B completed");
     next();
   }, 2500);
@@ -30,23 +30,23 @@ var callback = function() {
   echo("Sequence completed in " + timer('stop') + " msec", true);
 };
 
-sequence.run( [ setTimer, taskA, taskB, taskA ], callback );
+sequence( [ setTimer, taskA, taskB, taskA ], callback );
 
 /*
-sequence.run(
+sequence(
   [
     setTimer,
     function(next){
       setTimeout(function() {
         echo("Task A completed.");
-        sequence.cache.taskA = "from Task A";
+        cache.taskA = "from Task A";
         next();
       }, 1000);
     },
     function(next){
       setTimeout(function() {
         echo("Task B completed.");
-        echo(sequence.cache.taskA);
+        echo(cache.taskA);
         next();
       }, 1000);
     }

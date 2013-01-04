@@ -4,20 +4,21 @@ var
   sequence = require('../sequence.js').sequence,
   helper = require('./helper.js'),
   setTimer = helper.setTimer,
-  timer = helper.timer
+  timer = helper.timer,
+  cache = {}
 ;
 
 function taskA(next) {
   setTimeout(function() {
     console.log("Task A completed");
-    sequence.cache.test = "Hi from Task A!";
+    cache.test = "Hi from Task A!";
     next();
   }, 1000);
 }
 
 function taskB(next) {
   setTimeout(function() {
-    console.log("Task B: " + sequence.cache.test);
+    console.log("Task B: " + cache.test);
     console.log("Task B completed");
     next();
   }, 2500);
@@ -28,24 +29,24 @@ function callback() {
 }
 
 // Example 1
-sequence.run( [ setTimer, taskA, taskB, taskA ], callback );
+sequence( [ setTimer, taskA, taskB, taskA ], callback );
 
 /*
 // Example 2
-sequence.run(
+sequence(
   [
     setTimer,
     function(next){
       setTimeout(function() {
         console.log("Task A completed.");
-        sequence.cache.taskA = "from Task A";
+        cache.taskA = "from Task A";
         next();
       }, 1000);
     },
     function(next){
       setTimeout(function() {
         console.log("Task B completed.");
-        console.log(sequence.cache.taskA);
+        console.log(cache.taskA);
         next();
       }, 1000);
     }

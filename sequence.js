@@ -7,25 +7,25 @@
  * MIT License
 */
 
-var sequence = (function () {
-  
-  var cache = {};
+(function () {
 
-  function run (tasks, callback) {
+  function sequence (tasks, callback) {
 
     var 
       num = 0, 
-      fns = []
+      fns = [],
+      alen = arguments.length,
+      hasTasks
     ;
 
-    function isArray(obj) {
-      if (obj.constructor.toString().indexOf('Array') === -1) {
+    hasTasks = (function () {
+      if (tasks.constructor.toString().indexOf('Array') === -1) {
         return false;
       }
       else {
         return true; 
       }
-    }
+    }());
     
     function next() {
       function task(fn) {
@@ -36,14 +36,16 @@ var sequence = (function () {
           next();
         }
       }
-      tasks[num++](task);
+      if(num < tasks.length) {
+        tasks[num++](task);
+      }
     }
         
-    if(arguments.length === 0) {
+    if(alen === 0) {
       return; //no tasks, no callback
-    } else if (arguments.length === 1 && !isArray(tasks)) {
+    } else if (alen === 1 && !hasTasks) {
       tasks(); // no tasks, only callback
-    } else if (arguments.length === 2 && isArray(tasks) && tasks.length === 0) {
+    } else if (alen === 2 && hasTasks && tasks.length === 0) {
       callback(); // empty task array, only callback
     } else {
       next();  
@@ -51,15 +53,10 @@ var sequence = (function () {
     
   }
 
-  return {
-    run: run,
-    cache: cache
-  };
+  if (typeof exports !== 'undefined') { 
+    exports['sequence'] = sequence;
+  } else if (typeof window !== 'undefined') { 
+    window['sequence'] = sequence;
+  }
 
 }());
-
-// NodeJS
-// var sequence = require('./sequence.js').sequence;
-if (typeof exports !== 'undefined') { 
-  exports.sequence = sequence;
-} 
