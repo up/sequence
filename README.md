@@ -77,3 +77,6 @@ sequence( [ taskA, taskA, taskA, taskA, taskB ], callback );
 * `test/test.browser.htm`
 * `$ node test/test.node.js`
 
+##Alternative
+
+You need more async utilities for node and the browser? See [https://github.com/caolan/async](https://github.com/caolan/async)
