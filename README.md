@@ -69,8 +69,8 @@ sequence( [ taskA, taskA, taskA, taskA, taskB ], callback );
 ```
 
 ##File sizes
-* Uncompressed: 1.03KB (532 bytes gzipped)
-* Compressed: 396 bytes (243 bytes gzipped)
+* Uncompressed: 1KB (510 bytes gzipped)
+* Compressed: 363 bytes (250 bytes gzipped)
 
 ##Tests
 
