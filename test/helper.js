@@ -24,14 +24,14 @@ if (typeof exports !== 'undefined') {
 }
 
 // Browser notification with GrowlJS
-var echo = function(msg, sticky){
+var echo = function(msg, persistent){
   var config = {
 	  head: msg,
 	  position: 'top right',
 	  path: 'growlnotify/'
   };
-  if(sticky) {
-	  config.sticky = true;
+  if(persistent) {
+	  config.persistent = true;
 	  config.method = 'info';
 	  config.body = msg;
 	  config.head = 'Done!';
