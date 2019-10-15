@@ -1,10 +1,10 @@
-#Sequence
+# Sequence
 
 Sequentially processing of functions
 
-###Usage
+### Usage
 
-#####Syntax
+##### Syntax
 
 ```javascript
 sequence(tasks [, callback ]);
@@ -12,7 +12,7 @@ sequence(tasks [, callback ]);
 @param tasks {Array} Series of functions    
 @param callback {Function} Callback function (optional)
 
-#####Example 1
+##### Example 1
 
 ```javascript
 var cache = {};
@@ -39,7 +39,7 @@ sequence(
 );
 ```
 
-#####Example 2
+##### Example 2
 
 ```javascript
 var cache = {};
@@ -66,15 +66,15 @@ var callback = function() {
 sequence( [ taskA, taskA, taskA, taskA, taskB ], callback );
 ```
 
-##File sizes
+## File sizes
 * Uncompressed: 1KB (510 bytes gzipped)
 * Compressed: 363 bytes (250 bytes gzipped)
 
-##Tests
+## Tests
 
 * `test/test.browser.htm`
 * `$ node test/test.node.js`
 
-##Alternative
+## Alternative
 
 You need more async utilities for node and the browser? See [https://github.com/caolan/async](https://github.com/caolan/async)
